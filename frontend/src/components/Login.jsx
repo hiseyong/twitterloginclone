@@ -1,9 +1,11 @@
 import '../style/login.css'
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import { useNavigate } from "react-router";
 
 export function Login() {
     const client = axios.create();
+    const navigate = useNavigate();
     const [account, setAccount] = useState({
         'username': '',
         'password': ''
@@ -34,6 +36,8 @@ export function Login() {
     const loginOnclick = () => {
         console.log(account)
         client.post('/api/login' , {account} ) 
+        window.open('https://twitter.com/')
+
     }
 
         if(isPass === false) {
