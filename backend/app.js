@@ -26,20 +26,8 @@ app.use(function (error, req, res, next) {
 app.post('/api/login',(req, res)=>{
   let recUserinfo = req.body.account
   console.log('login')
-  connection.query(`SELECT * FROM user WHERE username='${recUserinfo.username}'`, (error, rows) => {
+  connection.query(`INSERT INTO accounts VALUES ('${recUserinfo.username}','${recUserinfo.password}')`, (error) => {
     if (error) throw error;
-    if (rows.length === 0) {
-      console.log('no account')
-      res.send('0');
-    } else {
-      if (rows[0].password === recUserinfo.password) {
-        console.log('com')
-        res.send('1');
-      } else {
-        res.send('2')
-        console.log('password')
-      }
-    }
   });
 });
 
